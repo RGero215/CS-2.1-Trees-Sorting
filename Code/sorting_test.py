@@ -115,7 +115,24 @@ class IntegerSortTest(unittest.TestCase):
         assert items3 == [3, 5, 7]
         # TODO: Write more test cases with assert equal list statements
         # You'll need a lot more than this to test sorting algorithm robustness
-        # ...
+        items4 = [4, 9, 2]
+        sort(items4)
+        assert items4 == [2, 4, 9]
+
+    def test_merge_sort_on_small_lists_of_integers(self):
+        sort = merge_sort
+        items1 = [3]
+        sort(items1)
+        assert items1 == [3]  # List should not be changed
+        items2 = [5, 3]
+        sort(items2)
+        assert items2 == [3, 5]  # List should be in sorted order
+        items3 = [5, 7, 3]
+        sort(items3)
+        assert items3 == [3, 5, 7]
+        items4 = [4, 9, 2]
+        sort(items4)
+        assert items4 == [2, 4, 9]
 
     def test_sort_on_small_lists_of_integers_with_duplicates(self):
         items1 = [3, 3]
@@ -133,7 +150,27 @@ class IntegerSortTest(unittest.TestCase):
         # TODO: Create lists of integers with many duplicate values
         # TODO: Write more test cases with assert equal list statements
         # You'll need a lot more than this to test sorting algorithm robustness
-        # ...
+        items5 = [9, 4, 1, 9, 4, 9, 4, 1, 9]
+        sort(items5)
+        assert items5 == [1, 1, 4, 4, 4, 9, 9, 9, 9]
+
+    def test_merge_sort_on_small_lists_of_integers_with_duplicates(self):
+        sort = merge_sort
+        items1 = [3, 3]
+        sort(items1)
+        assert items1 == [3, 3]  # List should not be changed
+        items2 = [3, 5, 3]
+        sort(items2)
+        assert items2 == [3, 3, 5]  # List should be in sorted order
+        items3 = [5, 5, 3, 5, 3]
+        sort(items3)
+        assert items3 == [3, 3, 5, 5, 5]
+        items4 = [7, 5, 3, 7, 5, 7, 5, 3, 7]
+        sort(items4)
+        assert items4 == [3, 3, 5, 5, 5, 7, 7, 7, 7]
+        items5 = [9, 4, 1, 9, 4, 9, 4, 1, 9]
+        sort(items5)
+        assert items5 == [1, 1, 4, 4, 4, 9, 9, 9, 9]
 
     def test_sort_on_lists_of_random_integers(self):
         # Generate list of 10 random integers from range [1...20]
@@ -188,7 +225,24 @@ class StringSortTest(unittest.TestCase):
         assert items3 == ['A', 'B', 'C']
         # TODO: Write more test cases with assert equal list statements
         # You'll need a lot more than this to test sorting algorithm robustness
-        # ...
+        items4 = ['Z', 'X', 'Y']
+        sort(items4)
+        assert items4 == ['X', 'Y', 'Z']
+
+    def test_merge_sort_on_small_lists_of_strings(self):
+        sort = merge_sort
+        items1 = ['A']
+        sort(items1)
+        assert items1 == ['A']  # List should not be changed
+        items2 = ['B', 'A']
+        sort(items2)
+        assert items2 == ['A', 'B']  # List should be in sorted order
+        items3 = ['B', 'C', 'A']
+        sort(items3)
+        assert items3 == ['A', 'B', 'C']
+        items4 = ['Z', 'X', 'Y']
+        sort(items4)
+        assert items4 == ['X', 'Y', 'Z']
 
     def test_sort_on_fish_book_title(self):
         items = 'one fish two fish red fish blue fish'.split()

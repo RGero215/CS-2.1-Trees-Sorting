@@ -140,6 +140,32 @@ class PrefixTreeTest(unittest.TestCase):
         assert node_Z.is_terminal() is True
         assert node_Z.num_children() == 0
 
+        # Insert new string with no overlap that starts from root node
+        tree.insert('EFG')
+        # Verify root node again
+        assert tree.root.character == PrefixTree.START_CHARACTER
+        assert tree.root.is_terminal() is False
+        assert tree.root.num_children() == 2  # Root node now has two children
+        assert tree.root.has_child('A') is True  # Node 'A' is still its child
+        assert tree.root.has_child('E') is True  # Node 'E' is its new child
+        # Verify new node 'E'
+        node_E = tree.root.get_child('E')
+        assert node_E.character == 'E'
+        assert node_E.is_terminal() is False
+        assert node_E.num_children() == 1
+        assert node_E.has_child('F') is True
+        # Verify new node 'F'
+        node_F = node_E.get_child('F')
+        assert node_F.character == 'F'
+        assert node_F.is_terminal() is False
+        assert node_F.num_children() == 1
+        assert node_F.has_child('G') is True
+        # Verify new node 'Z'
+        node_G = node_F.get_child('G')
+        assert node_G.character == 'G'
+        assert node_G.is_terminal() is True
+        assert node_G.num_children() == 0
+
     def test_size_and_is_empty(self):
         tree = PrefixTree()
         # Verify size after initializing tree
@@ -160,6 +186,14 @@ class PrefixTreeTest(unittest.TestCase):
         # Verify size after fourth insert
         tree.insert('XYZ')
         assert tree.size == 4
+        assert tree.is_empty() is False
+        # Verify size after fifth insert
+        tree.insert('EFG')
+        assert tree.size == 5
+        assert tree.is_empty() is False
+        # Verify size after sixth insert
+        tree.insert('HIJ')
+        assert tree.size == 6
         assert tree.is_empty() is False
 
     def test_size_with_repeated_insert(self):
@@ -192,9 +226,15 @@ class PrefixTreeTest(unittest.TestCase):
         # Verify size after repeating fourth insert
         tree.insert('XYZ')
         assert tree.size == 4
+        # Verify size after fifth insert
+        tree.insert('EFG')
+        assert tree.size == 5
+        # Verify size after repeating fifth insert
+        tree.insert('EFG')
+        assert tree.size == 5
 
     def test_contains(self):
-        strings = ['ABC', 'ABD', 'A', 'XYZ']
+        strings = ['ABC', 'ABD', 'A', 'XYZ', 'H', 'HI', 'HIJ']
         tree = PrefixTree(strings)
         # Verify contains for all substrings
         assert tree.contains('ABC') is True
@@ -212,6 +252,12 @@ class PrefixTreeTest(unittest.TestCase):
         assert tree.contains('X') is False
         assert tree.contains('Y') is False
         assert tree.contains('Z') is False
+        assert tree.contains('E') is False
+        assert tree.contains('F') is False
+        assert tree.contains('G') is False
+        assert tree.contains('H') is True
+        assert tree.contains('HI') is True
+        assert tree.contains('HIJ') is True
 
     def test_complete(self):
         strings = ['ABC', 'ABD', 'A', 'XYZ']
