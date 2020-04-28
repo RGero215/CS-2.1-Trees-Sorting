@@ -38,7 +38,10 @@ class PrefixTree:
         return self.size == 0
 
     def contains(self, string):
-        """Return True if this prefix tree contains the given string."""
+        """Return True if this prefix tree contains the given string.
+        time complexity: O(n) where n is the number of node 
+        space complexity: O(1)
+        """
         
         node = self.root
         for char in string:
@@ -51,7 +54,10 @@ class PrefixTree:
         return node.is_terminal()
 
     def insert(self, string):
-        """Insert the given string into this prefix tree."""
+        """Insert the given string into this prefix tree.
+        time complexity: O(n) where n is the number of node 
+        space complexity: O(1)
+        """
         
         node = self.root
         for char in string:
@@ -66,7 +72,10 @@ class PrefixTree:
         """Return a pair containing the deepest node in this prefix tree that
         matches the longest prefix of the given string and the node's depth.
         The depth returned is equal to the number of prefix characters matched.
-        Search is done iteratively with a loop starting from the root node."""
+        Search is done iteratively with a loop starting from the root node.
+        time complexity: O(n) where n is the number of node 
+        space complexity: O(1)
+        """
         # Match the empty string
         if len(string) == 0:
             return self.root, 0
@@ -83,7 +92,10 @@ class PrefixTree:
 
     def complete(self, prefix):
         """Return a list of all strings stored in this prefix tree that start
-        with the given prefix string."""
+        with the given prefix string.
+        time complexity: O(n) where n is the number of node when calling traverse
+        space complexity: O(1)
+        """
         # Create a list of completions in prefix tree
         completions = []
         root, depth = self._find_node(prefix)
@@ -92,7 +104,10 @@ class PrefixTree:
         return completions
 
     def strings(self):
-        """Return a list of all strings stored in this prefix tree."""
+        """Return a list of all strings stored in this prefix tree.
+        time complexity: O(n) where n is the number of node when calling traverse
+        space complexity: O(1)
+        """
         # Create a list of all strings in prefix tree
         all_strings = []
         self._traverse(self.root, self.root.character, all_strings.append)
@@ -101,7 +116,10 @@ class PrefixTree:
     def _traverse(self, node, prefix, visit):
         """Traverse this prefix tree with recursive depth-first traversal.
         Start at the given node with the given prefix representing its path in
-        this prefix tree and visit each node with the given visit function."""
+        this prefix tree and visit each node with the given visit function.
+        time complexity: O(n) where n is the number of node 
+        space complexity: O(1)
+        """
         if node.is_terminal():
             visit(prefix)
         for child in node.get_children():
