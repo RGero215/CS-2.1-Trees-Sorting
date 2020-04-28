@@ -30,8 +30,8 @@ def counting_sort(numbers):
 def bucket_sort(numbers, num_buckets=10):
     """Sort given numbers by distributing into buckets representing subranges,
     then sorting each bucket and concatenating all buckets in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    TODO: Running time: O(n^2) because it has to itarate through the buckets and values
+    TODO: Memory usage: O(n) create buckets with the number of n"""
     if num_buckets <= 0:
         num_buckets = len(numbers)
     # TODO: Find range of given numbers (minimum and maximum values)
