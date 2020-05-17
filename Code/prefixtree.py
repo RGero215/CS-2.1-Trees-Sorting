@@ -125,6 +125,22 @@ class PrefixTree:
         for child in node.get_children():
             self._traverse(child, prefix + child.character, visit)
 
+    def delete(self, key):
+        """
+        Removes all nodes containing letters of the given key to delete.
+        O(k + (n * m)), where k is the length of the string
+        being deleted, and (n * m) represents the time it takes to check if
+        the input string is contained within the trie
+        """
+         if self.contains(key) is True:  # O(m * n)
+            # set the node at the end of key no longer signal end of a node
+            last_node, depth = self._find_node(key[-1])  # O(m)
+            last_node.terminal = False
+            # decrement size of tree
+            self.size -= 1
+        else:  # key is not actually in the prefix tree
+            raise ValueError('Word is not found and cannot be deleted.')
+
 
 def create_prefix_tree(strings):
     print(f'strings: {strings}')
